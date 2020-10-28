@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -126,4 +128,99 @@ def game_hash
   }
 end
 
-# Write code here
+
+require './hashketball.rb'
+
+def num_points_scored(sel_name) #returns player's points
+playPoints = 0
+game_hash.each do |location, team_info|
+  team_info[:players].each do |attribute|
+    if (attribute[:player_name] == sel_name)
+    playPoints = attribute[:points]
+  end
+end
+end 
+playPoints
+end
+
+
+def shoe_size(name)  #returns player's name and shoe size
+shoeSize = 0
+playerName = ""
+game_hash.each do |location, team_info|
+team_info[:players].each do |attribute|
+    if (attribute[:player_name] == name)
+    shoeSize = attribute[:shoe]
+    playerName = attribute[:player_name]
+  end
+end
+end
+playerName 
+shoeSize 
+end 
+  
+  
+def team_colors(teamName) #returns [] of the team's colors
+teamColors = []
+game_hash.each do |location, team_info|
+if (team_info[:team_name] == teamName)
+  teamColors = team_info[:colors]
+end
+end 
+teamColors
+end 
+
+
+def team_names #return an array of team names
+teamArr = []
+game_hash.each do |location, team_info|
+teamArr.push(team_info[:team_name])
+end
+teamArr
+end 
+
+
+def player_numbers(teamName) 
+jerseyNums = []
+game_hash.each do |location, team_info|
+  if (team_info[:team_name] == teamName)
+  team_info[:players].each do |attribute|
+  jerseyNums.push(attribute[:number])
+end 
+end
+end
+jerseyNums
+end
+
+
+def player_stats(name) #returns a hash of that player's player_stats
+stats = {}
+game_hash.each do |locaiton, team_info|
+  team_info[:players].each do |attribute|
+    if (attribute[:player_name] == name)
+      stats = attribute
+end 
+end
+end
+stats
+end 
+
+def big_shoe_rebounds
+#return the num of rebounds of the player with the largest shoe size:
+#find largest shoe size player, return his num of rebounds 
+
+bigFoot = ""
+bigShoe = 0
+bigRebound = 0
+game_hash.each do |location, team_info|
+team_info[:players].each do |attribute|
+  if (attribute[:shoe] > bigShoe)
+    bigFoot = attribute[:player_name]
+    bigShoe = attribute[:shoe]
+    bigRebound = attribute[:rebounds]
+end
+end
+end
+bigRebound
+end 
+  
